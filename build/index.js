@@ -995,23 +995,61 @@ var Favorite = ({ contact }) => {
   }, this);
 };
 
+// app/routes/city.$cityid.tsx
+var city_cityid_exports = {};
+__export(city_cityid_exports, {
+  default: () => City
+});
+var import_react6 = require("react"), import_jsx_dev_runtime5 = require("react/jsx-dev-runtime"), Map = (0, import_react6.lazy)(() => import("react-map-gl"));
+function City() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_react6.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: "Loading..." }, void 0, !1, {
+    fileName: "app/routes/city.$cityid.tsx",
+    lineNumber: 9,
+    columnNumber: 25
+  }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+    Map,
+    {
+      mapboxAccessToken: "pk.eyJ1IjoiZS13aWxsaWFtcyIsImEiOiJjbHR6MmhqdTAwbm5rMmt1a3B4NW5sbTl5In0.USzDUJuw69haMQgOoGESbQ",
+      initialViewState: {
+        longitude: -122.4,
+        latitude: 37.8,
+        zoom: 14
+      },
+      style: { width: "100%", height: "100%" },
+      mapStyle: "mapbox://styles/mapbox/dark-v9"
+    },
+    void 0,
+    !1,
+    {
+      fileName: "app/routes/city.$cityid.tsx",
+      lineNumber: 10,
+      columnNumber: 7
+    },
+    this
+  ) }, void 0, !1, {
+    fileName: "app/routes/city.$cityid.tsx",
+    lineNumber: 9,
+    columnNumber: 5
+  }, this);
+}
+
 // app/routes/_index.tsx
 var index_exports = {};
 __export(index_exports, {
   default: () => Index
 });
-var import_jsx_dev_runtime5 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime");
 function Index() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("p", { id: "index-page", children: [
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("p", { id: "index-page", children: [
     "This is a demo for Remix.",
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("br", {}, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("br", {}, void 0, !1, {
       fileName: "app/routes/_index.tsx",
       lineNumber: 5,
       columnNumber: 7
     }, this),
     "Check out",
     " ",
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("a", { href: "https://remix.run", children: "the docs at remix.run" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("a", { href: "https://remix.run", children: "the docs at remix.run" }, void 0, !1, {
       fileName: "app/routes/_index.tsx",
       lineNumber: 7,
       columnNumber: 7
@@ -1025,7 +1063,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-XMMFCPTF.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-K2A5PC6Y.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-QVG6GSVZ.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-FDBT3VG3.js", imports: ["/build/_shared/chunk-G7CHZRZX.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-3SWKGZAX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/contacts.$contactId": { id: "routes/contacts.$contactId", parentId: "root", path: "contacts/:contactId", index: void 0, caseSensitive: void 0, module: "/build/routes/contacts.$contactId-OKQJWHIN.js", imports: ["/build/_shared/chunk-AUYLHJJM.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/contacts.$contactId.destroy": { id: "routes/contacts.$contactId.destroy", parentId: "routes/contacts.$contactId", path: "destroy", index: void 0, caseSensitive: void 0, module: "/build/routes/contacts.$contactId.destroy-CD54FBRA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/contacts.$contactId_.edit": { id: "routes/contacts.$contactId_.edit", parentId: "root", path: "contacts/:contactId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/contacts.$contactId_.edit-EJMPAHDS.js", imports: ["/build/_shared/chunk-AUYLHJJM.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "42473f7a", hmr: { runtime: "/build/_shared/chunk-QVG6GSVZ.js", timestamp: 1710879942140 }, url: "/build/manifest-42473F7A.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-3ISQ7BP4.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-ZHI52M4D.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-KSGEUDUM.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-RS2P4HHA.js", imports: ["/build/_shared/chunk-G7CHZRZX.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-KHXAM5FG.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/city.$cityid": { id: "routes/city.$cityid", parentId: "root", path: "city/:cityid", index: void 0, caseSensitive: void 0, module: "/build/routes/city.$cityid-D3CEF3KV.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/contacts.$contactId": { id: "routes/contacts.$contactId", parentId: "root", path: "contacts/:contactId", index: void 0, caseSensitive: void 0, module: "/build/routes/contacts.$contactId-BSNU2CJ2.js", imports: ["/build/_shared/chunk-AUYLHJJM.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/contacts.$contactId.destroy": { id: "routes/contacts.$contactId.destroy", parentId: "routes/contacts.$contactId", path: "destroy", index: void 0, caseSensitive: void 0, module: "/build/routes/contacts.$contactId.destroy-CD54FBRA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/contacts.$contactId_.edit": { id: "routes/contacts.$contactId_.edit", parentId: "root", path: "contacts/:contactId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/contacts.$contactId_.edit-YMQQNK5K.js", imports: ["/build/_shared/chunk-AUYLHJJM.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "c78d9ba0", hmr: { runtime: "/build/_shared/chunk-KSGEUDUM.js", timestamp: 1710901121886 }, url: "/build/manifest-C78D9BA0.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1, v3_throwAbortReason: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {
@@ -1060,6 +1098,14 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     index: void 0,
     caseSensitive: void 0,
     module: contacts_contactId_exports
+  },
+  "routes/city.$cityid": {
+    id: "routes/city.$cityid",
+    parentId: "root",
+    path: "city/:cityid",
+    index: void 0,
+    caseSensitive: void 0,
+    module: city_cityid_exports
   },
   "routes/_index": {
     id: "routes/_index",
