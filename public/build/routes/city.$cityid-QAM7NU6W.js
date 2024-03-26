@@ -2,11 +2,21 @@ import {
   require_react_dom
 } from "/build/_shared/chunk-GIAAE3CH.js";
 import {
+  createHotContext
+} from "/build/_shared/chunk-KSGEUDUM.js";
+import "/build/_shared/chunk-UWV35TSL.js";
+import {
+  require_jsx_dev_runtime
+} from "/build/_shared/chunk-XU7DNSPJ.js";
+import {
   require_react
 } from "/build/_shared/chunk-BOXFZXVX.js";
 import {
   __toESM
 } from "/build/_shared/chunk-PNG5AS42.js";
+
+// app/routes/city.$cityid.tsx
+var import_react15 = __toESM(require_react());
 
 // node_modules/react-map-gl/dist/esm/exports-mapbox.js
 var React5 = __toESM(require_react());
@@ -19,44 +29,6 @@ var import_react3 = __toESM(require_react());
 var React = __toESM(require_react());
 var import_react = __toESM(require_react());
 var MountedMapsContext = React.createContext(null);
-var MapProvider = (props) => {
-  const [maps, setMaps] = (0, import_react.useState)({});
-  const onMapMount = (0, import_react.useCallback)((map, id = "default") => {
-    setMaps((currMaps) => {
-      if (id === "current") {
-        throw new Error("'current' cannot be used as map id");
-      }
-      if (currMaps[id]) {
-        throw new Error(`Multiple maps with the same id: ${id}`);
-      }
-      return { ...currMaps, [id]: map };
-    });
-  }, []);
-  const onMapUnmount = (0, import_react.useCallback)((id = "default") => {
-    setMaps((currMaps) => {
-      if (currMaps[id]) {
-        const nextMaps = { ...currMaps };
-        delete nextMaps[id];
-        return nextMaps;
-      }
-      return currMaps;
-    });
-  }, []);
-  return React.createElement(MountedMapsContext.Provider, { value: {
-    maps,
-    onMapMount,
-    onMapUnmount
-  } }, props.children);
-};
-function useMap() {
-  var _a;
-  const maps = (_a = (0, import_react.useContext)(MountedMapsContext)) === null || _a === void 0 ? void 0 : _a.maps;
-  const currentMap = (0, import_react.useContext)(MapContext);
-  const mapsWithCurrent = (0, import_react.useMemo)(() => {
-    return { ...maps, current: currentMap === null || currentMap === void 0 ? void 0 : currentMap.map };
-  }, [maps, currentMap]);
-  return mapsWithCurrent;
-}
 
 // node_modules/react-map-gl/dist/esm/utils/deep-equal.js
 function arePointsEqual(a, b) {
@@ -1219,227 +1191,103 @@ var scale_control_default = (0, import_react11.memo)(ScaleControl);
 // node_modules/react-map-gl/dist/esm/components/layer.js
 var import_react12 = __toESM(require_react());
 
-// node_modules/react-map-gl/dist/esm/utils/assert.js
-function assert(condition, message) {
-  if (!condition) {
-    throw new Error(message);
-  }
-}
-
-// node_modules/react-map-gl/dist/esm/components/layer.js
-function updateLayer(map, id, props, prevProps) {
-  assert(props.id === prevProps.id, "layer id changed");
-  assert(props.type === prevProps.type, "layer type changed");
-  if (props.type === "custom" || prevProps.type === "custom") {
-    return;
-  }
-  const { layout = {}, paint = {}, filter, minzoom, maxzoom, beforeId } = props;
-  if (beforeId !== prevProps.beforeId) {
-    map.moveLayer(id, beforeId);
-  }
-  if (layout !== prevProps.layout) {
-    const prevLayout = prevProps.layout || {};
-    for (const key in layout) {
-      if (!deepEqual(layout[key], prevLayout[key])) {
-        map.setLayoutProperty(id, key, layout[key]);
-      }
-    }
-    for (const key in prevLayout) {
-      if (!layout.hasOwnProperty(key)) {
-        map.setLayoutProperty(id, key, void 0);
-      }
-    }
-  }
-  if (paint !== prevProps.paint) {
-    const prevPaint = prevProps.paint || {};
-    for (const key in paint) {
-      if (!deepEqual(paint[key], prevPaint[key])) {
-        map.setPaintProperty(id, key, paint[key]);
-      }
-    }
-    for (const key in prevPaint) {
-      if (!paint.hasOwnProperty(key)) {
-        map.setPaintProperty(id, key, void 0);
-      }
-    }
-  }
-  if (!deepEqual(filter, prevProps.filter)) {
-    map.setFilter(id, filter);
-  }
-  if (minzoom !== prevProps.minzoom || maxzoom !== prevProps.maxzoom) {
-    map.setLayerZoomRange(id, minzoom, maxzoom);
-  }
-}
-function createLayer(map, id, props) {
-  if (map.style && map.style._loaded && (!("source" in props) || map.getSource(props.source))) {
-    const options = { ...props, id };
-    delete options.beforeId;
-    map.addLayer(options, props.beforeId);
-  }
-}
-var layerCounter = 0;
-function Layer(props) {
-  const map = (0, import_react12.useContext)(MapContext).map.getMap();
-  const propsRef = (0, import_react12.useRef)(props);
-  const [, setStyleLoaded] = (0, import_react12.useState)(0);
-  const id = (0, import_react12.useMemo)(() => props.id || `jsx-layer-${layerCounter++}`, []);
-  (0, import_react12.useEffect)(() => {
-    if (map) {
-      const forceUpdate = () => setStyleLoaded((version) => version + 1);
-      map.on("styledata", forceUpdate);
-      forceUpdate();
-      return () => {
-        map.off("styledata", forceUpdate);
-        if (map.style && map.style._loaded && map.getLayer(id)) {
-          map.removeLayer(id);
-        }
-      };
-    }
-    return void 0;
-  }, [map]);
-  const layer = map && map.style && map.getLayer(id);
-  if (layer) {
-    try {
-      updateLayer(map, id, props, propsRef.current);
-    } catch (error) {
-      console.warn(error);
-    }
-  } else {
-    createLayer(map, id, props);
-  }
-  propsRef.current = props;
-  return null;
-}
-var layer_default = Layer;
-
 // node_modules/react-map-gl/dist/esm/components/source.js
 var React4 = __toESM(require_react());
 var import_react13 = __toESM(require_react());
 var import_react14 = __toESM(require_react());
-var sourceCounter = 0;
-function createSource(map, id, props) {
-  if (map.style && map.style._loaded) {
-    const options = { ...props };
-    delete options.id;
-    delete options.children;
-    map.addSource(id, options);
-    return map.getSource(id);
-  }
-  return null;
-}
-function updateSource(source, props, prevProps) {
-  assert(props.id === prevProps.id, "source id changed");
-  assert(props.type === prevProps.type, "source type changed");
-  let changedKey = "";
-  let changedKeyCount = 0;
-  for (const key in props) {
-    if (key !== "children" && key !== "id" && !deepEqual(prevProps[key], props[key])) {
-      changedKey = key;
-      changedKeyCount++;
-    }
-  }
-  if (!changedKeyCount) {
-    return;
-  }
-  const type = props.type;
-  if (type === "geojson") {
-    source.setData(props.data);
-  } else if (type === "image") {
-    source.updateImage({
-      url: props.url,
-      coordinates: props.coordinates
-    });
-  } else if ("setCoordinates" in source && changedKeyCount === 1 && changedKey === "coordinates") {
-    source.setCoordinates(props.coordinates);
-  } else if ("setUrl" in source) {
-    switch (changedKey) {
-      case "url":
-        source.setUrl(props.url);
-        break;
-      case "tiles":
-        source.setTiles(props.tiles);
-        break;
-      default:
-    }
-  } else {
-    console.warn(`Unable to update <Source> prop: ${changedKey}`);
-  }
-}
-function Source(props) {
-  const map = (0, import_react13.useContext)(MapContext).map.getMap();
-  const propsRef = (0, import_react13.useRef)(props);
-  const [, setStyleLoaded] = (0, import_react13.useState)(0);
-  const id = (0, import_react13.useMemo)(() => props.id || `jsx-source-${sourceCounter++}`, []);
-  (0, import_react13.useEffect)(() => {
-    if (map) {
-      const forceUpdate = () => setTimeout(() => setStyleLoaded((version) => version + 1), 0);
-      map.on("styledata", forceUpdate);
-      forceUpdate();
-      return () => {
-        var _a;
-        map.off("styledata", forceUpdate);
-        if (map.style && map.style._loaded && map.getSource(id)) {
-          const allLayers = (_a = map.getStyle()) === null || _a === void 0 ? void 0 : _a.layers;
-          if (allLayers) {
-            for (const layer of allLayers) {
-              if (layer.source === id) {
-                map.removeLayer(layer.id);
-              }
-            }
-          }
-          map.removeSource(id);
-        }
-      };
-    }
-    return void 0;
-  }, [map]);
-  let source = map && map.style && map.getSource(id);
-  if (source) {
-    updateSource(source, props, propsRef.current);
-  } else {
-    source = createSource(map, id, props);
-  }
-  propsRef.current = props;
-  return source && React4.Children.map(props.children, (child) => child && (0, import_react14.cloneElement)(child, {
-    source: id
-  })) || null;
-}
-var source_default = Source;
 
 // node_modules/react-map-gl/dist/esm/exports-mapbox.js
-function useMap2() {
-  return useMap();
-}
 var mapLib = import("/build/_shared/mapbox-gl-MU2RQELS.js");
 var Map2 = (() => {
-  return React5.forwardRef(function Map3(props, ref) {
+  return React5.forwardRef(function Map4(props, ref) {
     return Map(props, ref, mapLib);
   });
 })();
-var Marker2 = marker_default;
-var Popup2 = popup_default;
-var AttributionControl2 = attribution_control_default;
-var FullscreenControl2 = fullscreen_control_default;
-var NavigationControl2 = navigation_control_default;
-var GeolocateControl2 = geolocate_control_default;
-var ScaleControl2 = scale_control_default;
-var Layer2 = layer_default;
-var Source2 = source_default;
 var exports_mapbox_default = Map2;
+
+// app/components/map.client.tsx
+var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime());
+if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
+  console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
+} else {
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = (type, id) => {
+    window.$RefreshRuntime$.register(type, '"app/components/map.client.tsx"' + id);
+  };
+  window.$RefreshSig$ = window.$RefreshRuntime$.createSignatureFunctionForTransform;
+}
+var prevRefreshReg;
+var prevRefreshSig;
+if (import.meta) {
+  import.meta.hot = createHotContext(
+    //@ts-expect-error
+    "app/components/map.client.tsx"
+  );
+  import.meta.hot.lastModified = "1711492088515.4102";
+}
+function Map3() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(exports_mapbox_default, { mapboxAccessToken: "pk.eyJ1IjoiZS13aWxsaWFtcyIsImEiOiJjbHR6MmhqdTAwbm5rMmt1a3B4NW5sbTl5In0.USzDUJuw69haMQgOoGESbQ", initialViewState: {
+    longitude: -122.4,
+    latitude: 37.8,
+    zoom: 14
+  }, style: {
+    width: "100%",
+    height: "100%"
+  }, mapStyle: "mapbox://styles/mapbox/dark-v9" }, void 0, false, {
+    fileName: "app/components/map.client.tsx",
+    lineNumber: 23,
+    columnNumber: 10
+  }, this);
+}
+_c = Map3;
+var _c;
+$RefreshReg$(_c, "Map");
+window.$RefreshReg$ = prevRefreshReg;
+window.$RefreshSig$ = prevRefreshSig;
+
+// app/routes/city.$cityid.tsx
+var import_jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime());
+if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
+  console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
+} else {
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = (type, id) => {
+    window.$RefreshRuntime$.register(type, '"app/routes/city.$cityid.tsx"' + id);
+  };
+  window.$RefreshSig$ = window.$RefreshRuntime$.createSignatureFunctionForTransform;
+}
+var prevRefreshReg;
+var prevRefreshSig;
+if (import.meta) {
+  import.meta.hot = createHotContext(
+    //@ts-expect-error
+    "app/routes/city.$cityid.tsx"
+  );
+  import.meta.hot.lastModified = "1711495470422.1755";
+}
+function City() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react15.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { children: "Loading..." }, void 0, false, {
+    fileName: "app/routes/city.$cityid.tsx",
+    lineNumber: 26,
+    columnNumber: 30
+  }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Map3, {}, void 0, false, {
+    fileName: "app/routes/city.$cityid.tsx",
+    lineNumber: 27,
+    columnNumber: 7
+  }, this) }, void 0, false, {
+    fileName: "app/routes/city.$cityid.tsx",
+    lineNumber: 26,
+    columnNumber: 10
+  }, this);
+}
+_c2 = City;
+var _c2;
+$RefreshReg$(_c2, "City");
+window.$RefreshReg$ = prevRefreshReg;
+window.$RefreshSig$ = prevRefreshSig;
 export {
-  AttributionControl2 as AttributionControl,
-  FullscreenControl2 as FullscreenControl,
-  GeolocateControl2 as GeolocateControl,
-  Layer2 as Layer,
-  Map2 as Map,
-  MapProvider,
-  Marker2 as Marker,
-  NavigationControl2 as NavigationControl,
-  Popup2 as Popup,
-  ScaleControl2 as ScaleControl,
-  Source2 as Source,
-  exports_mapbox_default as default,
-  use_control_default as useControl,
-  useMap2 as useMap
+  City as default
 };
-//# sourceMappingURL=/build/_shared/esm-5H77DDLW.js.map
+//# sourceMappingURL=/build/routes/city.$cityid-QAM7NU6W.js.map
