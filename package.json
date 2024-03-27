@@ -10,6 +10,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@deck.gl/aggregation-layers": "^9.0.1",
+    "@deck.gl/core": "^9.0.1",
+    "@deck.gl/layers": "^9.0.1",
+    "@deck.gl/react": "^9.0.1",
     "@remix-run/node": "^2.8.0",
     "@remix-run/react": "^2.8.0",
     "@remix-run/serve": "^2.8.0",
