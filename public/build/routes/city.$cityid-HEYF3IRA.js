@@ -1,4 +1,10 @@
 import {
+  require_node
+} from "/build/_shared/chunk-TMJLOEVS.js";
+import {
+  useLoaderData
+} from "/build/_shared/chunk-7SO6AGKM.js";
+import {
   require_react_dom
 } from "/build/_shared/chunk-H36SQQE5.js";
 import {
@@ -34672,7 +34678,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/components/map.client.tsx"
   );
-  import.meta.hot.lastModified = "1711503848170.4465";
+  import.meta.hot.lastModified = "1711523531324.6125";
 }
 var INITIAL_VIEW_STATE = {
   longitude: -122.41669,
@@ -34685,28 +34691,27 @@ var data = [{
   sourcePosition: [-122.41669, 37.7853],
   targetPosition: [-122.41669, 37.781]
 }];
-function Map4() {
+function Map4({
+  mapboxToken
+}) {
   const layers = [new LineLayer({
     id: "line-layer",
     data
   })];
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(deckgl_default, { initialViewState: INITIAL_VIEW_STATE, controller: true, layers, children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
-    exports_mapbox_default,
-    {
-      mapboxAccessToken: "pk.eyJ1IjoiZS13aWxsaWFtcyIsImEiOiJjbHR6MmhqdTAwbm5rMmt1a3B4NW5sbTl5In0.USzDUJuw69haMQgOoGESbQ",
-      mapStyle: "mapbox://styles/mapbox/dark-v9"
-    },
-    void 0,
-    false,
-    {
-      fileName: "app/components/map.client.tsx",
-      lineNumber: 45,
-      columnNumber: 7
-    },
-    this
-  ) }, void 0, false, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { style: {
+    position: "relative",
+    height: "100%"
+  }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(deckgl_default, { initialViewState: INITIAL_VIEW_STATE, controller: true, layers, children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(exports_mapbox_default, { mapboxAccessToken: mapboxToken, mapStyle: "mapbox://styles/mapbox/light-v9" }, void 0, false, {
     fileName: "app/components/map.client.tsx",
-    lineNumber: 44,
+    lineNumber: 51,
+    columnNumber: 9
+  }, this) }, void 0, false, {
+    fileName: "app/components/map.client.tsx",
+    lineNumber: 50,
+    columnNumber: 7
+  }, this) }, void 0, false, {
+    fileName: "app/components/map.client.tsx",
+    lineNumber: 46,
     columnNumber: 10
   }, this);
 }
@@ -34717,6 +34722,7 @@ window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
 
 // app/routes/city.$cityid.tsx
+var import_node = __toESM(require_node());
 var import_jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime());
 if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
   console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
@@ -34730,28 +34736,39 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
+var _s = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
     "app/routes/city.$cityid.tsx"
   );
-  import.meta.hot.lastModified = "1711495470422.1755";
+  import.meta.hot.lastModified = "1711524139959.0647";
 }
 function City() {
+  _s();
+  const {
+    mapboxToken
+  } = useLoaderData();
+  if (!mapboxToken) {
+    throw new Error("Mapbox token is not defined");
+  }
   return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react21.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { children: "Loading..." }, void 0, false, {
     fileName: "app/routes/city.$cityid.tsx",
-    lineNumber: 26,
+    lineNumber: 43,
     columnNumber: 30
-  }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Map4, {}, void 0, false, {
+  }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Map4, { mapboxToken }, void 0, false, {
     fileName: "app/routes/city.$cityid.tsx",
-    lineNumber: 27,
+    lineNumber: 44,
     columnNumber: 7
   }, this) }, void 0, false, {
     fileName: "app/routes/city.$cityid.tsx",
-    lineNumber: 26,
+    lineNumber: 43,
     columnNumber: 10
   }, this);
 }
+_s(City, "vC37QatoKuOn1JgUq8QJ7avURPU=", false, function() {
+  return [useLoaderData];
+});
 _c2 = City;
 var _c2;
 $RefreshReg$(_c2, "City");
@@ -34769,4 +34786,4 @@ hammerjs/hammer.js:
    * Copyright (c) 2016 Jorik Tangelder;
    * Licensed under the MIT license *)
 */
-//# sourceMappingURL=/build/routes/city.$cityid-2255Y4K5.js.map
+//# sourceMappingURL=/build/routes/city.$cityid-HEYF3IRA.js.map
