@@ -1,6 +1,6 @@
 import GLMap from 'react-map-gl';
-import { DeckGL } from '@deck.gl/react/typed';
-import { LineLayer } from '@deck.gl/layers/typed';
+import { DeckGL } from '@deck.gl/react';
+import { LineLayer } from '@deck.gl/layers';
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
