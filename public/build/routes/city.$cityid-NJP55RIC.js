@@ -34678,7 +34678,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/components/map.client.tsx"
   );
-  import.meta.hot.lastModified = "1711523531324.6125";
+  import.meta.hot.lastModified = "1711605411915.6116";
 }
 var INITIAL_VIEW_STATE = {
   longitude: -122.41669,
@@ -34786,4 +34786,4 @@ hammerjs/hammer.js:
    * Copyright (c) 2016 Jorik Tangelder;
    * Licensed under the MIT license *)
 */
-//# sourceMappingURL=/build/routes/city.$cityid-GAIOXWDL.js.map
+//# sourceMappingURL=/build/routes/city.$cityid-NJP55RIC.js.map
