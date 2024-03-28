@@ -905,7 +905,19 @@ function createRouter(init) {
   } else if (future.v7_partialHydration) {
     let loaderData = init.hydrationData ? init.hydrationData.loaderData : null;
     let errors = init.hydrationData ? init.hydrationData.errors : null;
-    initialized = initialMatches.every((m) => m.route.loader && m.route.loader.hydrate !== true && (loaderData && loaderData[m.route.id] !== void 0 || errors && errors[m.route.id] !== void 0));
+    let isRouteInitialized = (m) => {
+      if (!m.route.loader)
+        return true;
+      if (m.route.loader.hydrate === true)
+        return false;
+      return loaderData && loaderData[m.route.id] !== void 0 || errors && errors[m.route.id] !== void 0;
+    };
+    if (errors) {
+      let idx = initialMatches.findIndex((m) => errors[m.route.id] !== void 0);
+      initialized = initialMatches.slice(0, idx + 1).every(isRouteInitialized);
+    } else {
+      initialized = initialMatches.every(isRouteInitialized);
+    }
   } else {
     initialized = init.hydrationData != null;
   }
@@ -7614,17 +7626,17 @@ function getRouteComponents(route, routeModule, isSpaMode) {
   if (route.id === "root" && routeModule.Layout) {
     return {
       ...Component3 ? {
-        element: /* @__PURE__ */ React6.createElement(routeModule.Layout, null, /* @__PURE__ */ React6.createElement(Component3))
+        element: /* @__PURE__ */ React6.createElement(routeModule.Layout, null, /* @__PURE__ */ React6.createElement(Component3, null))
       } : {
         Component: Component3
       },
       ...ErrorBoundary ? {
-        errorElement: /* @__PURE__ */ React6.createElement(routeModule.Layout, null, /* @__PURE__ */ React6.createElement(ErrorBoundary))
+        errorElement: /* @__PURE__ */ React6.createElement(routeModule.Layout, null, /* @__PURE__ */ React6.createElement(ErrorBoundary, null))
       } : {
         ErrorBoundary
       },
       ...HydrateFallback ? {
-        hydrateFallbackElement: /* @__PURE__ */ React6.createElement(routeModule.Layout, null, /* @__PURE__ */ React6.createElement(HydrateFallback))
+        hydrateFallbackElement: /* @__PURE__ */ React6.createElement(routeModule.Layout, null, /* @__PURE__ */ React6.createElement(HydrateFallback, null))
       } : {
         HydrateFallback
       }
@@ -8309,7 +8321,7 @@ export {
 
 @remix-run/router/dist/router.js:
   (**
-   * @remix-run/router v1.15.2
+   * @remix-run/router v1.15.3
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8321,7 +8333,7 @@ export {
 
 react-router/dist/index.js:
   (**
-   * React Router v6.22.2
+   * React Router v6.22.3
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8333,7 +8345,7 @@ react-router/dist/index.js:
 
 react-router-dom/dist/index.js:
   (**
-   * React Router DOM v6.22.2
+   * React Router DOM v6.22.3
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8345,7 +8357,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/server-runtime/dist/esm/responses.js:
   (**
-   * @remix-run/server-runtime v2.8.0
+   * @remix-run/server-runtime v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8357,7 +8369,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/server-runtime/dist/esm/index.js:
   (**
-   * @remix-run/server-runtime v2.8.0
+   * @remix-run/server-runtime v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8369,7 +8381,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8381,7 +8393,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/invariant.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8393,7 +8405,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/routeModules.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8405,7 +8417,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/links.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8417,7 +8429,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/markup.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8429,7 +8441,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/components.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8441,7 +8453,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/errorBoundaries.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8453,7 +8465,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/errors.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8465,7 +8477,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/data.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8477,7 +8489,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/fallback.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8489,7 +8501,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/routes.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8501,7 +8513,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/browser.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8513,7 +8525,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/scroll-restoration.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8525,7 +8537,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/server.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8537,7 +8549,7 @@ react-router-dom/dist/index.js:
 
 @remix-run/react/dist/esm/index.js:
   (**
-   * @remix-run/react v2.8.0
+   * @remix-run/react v2.8.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -8547,4 +8559,4 @@ react-router-dom/dist/index.js:
    * @license MIT
    *)
 */
-//# sourceMappingURL=/build/_shared/chunk-7SO6AGKM.js.map
+//# sourceMappingURL=/build/_shared/chunk-7EC46676.js.map

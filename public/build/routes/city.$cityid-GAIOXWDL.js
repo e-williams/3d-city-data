@@ -3,7 +3,7 @@ import {
 } from "/build/_shared/chunk-TMJLOEVS.js";
 import {
   useLoaderData
-} from "/build/_shared/chunk-7SO6AGKM.js";
+} from "/build/_shared/chunk-7EC46676.js";
 import {
   require_react_dom
 } from "/build/_shared/chunk-H36SQQE5.js";
@@ -34786,4 +34786,4 @@ hammerjs/hammer.js:
    * Copyright (c) 2016 Jorik Tangelder;
    * Licensed under the MIT license *)
 */
-//# sourceMappingURL=/build/routes/city.$cityid-HEYF3IRA.js.map
+//# sourceMappingURL=/build/routes/city.$cityid-GAIOXWDL.js.map
