@@ -2,4 +2,5 @@
 module.exports = {
   ignoredRouteFiles: ["**/*.css"],
   serverModuleFormat: "cjs",
+  serverDependenciesToBundle: ["remix-utils/client-only"],
 };
