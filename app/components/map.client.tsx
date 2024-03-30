@@ -1,24 +1,28 @@
 import GLMap from 'react-map-gl';
 import { DeckGL } from '@deck.gl/react';
-import { LineLayer } from '@deck.gl/layers';
+import { HexagonLayer } from '@deck.gl/aggregation-layers';
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-  longitude: -122.41669,
-  latitude: 37.7853,
-  zoom: 13,
+  longitude: -122.438065,
+  latitude: 37.750562,
+  zoom: 11.25,
   pitch: 0,
   bearing: 0
 };
 
-// Data to be used by the LineLayer
-const data = [
-  {sourcePosition: [-122.41669, 37.7853], targetPosition: [-122.41669, 37.781]}
-];
+// Hexagon Layer Data
+const SFMobileFoodPermitDataUrl = 'https://data.sfgov.org/resource/rqzj-sfat.json';
 
 export default function Map({mapboxToken}: {mapboxToken: string}) {
   const layers = [
-    new LineLayer({id: 'line-layer', data})
+    new HexagonLayer({
+      id: 'hexagon-layer',
+      data:SFMobileFoodPermitDataUrl,
+      radius: 100,
+      pickable: true,
+      getPosition: (d: any) => [Number(d.longitude), Number(d.latitude)],
+    })
   ];
   return (
     <div style={{ position: 'relative', height: '100%' }}>
