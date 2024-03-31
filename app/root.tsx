@@ -15,10 +15,7 @@ import {
 } from "@remix-run/react";
 import { useEffect } from "react";
 
-import type {
-  LinksFunction,
-  LoaderFunctionArgs,
-} from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 // existing imports
 
 import appStylesHref from "./app.css";
@@ -34,9 +31,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
 ];
 
-export const loader = async ({
-  request,
-}: LoaderFunctionArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
@@ -49,9 +44,7 @@ export default function App() {
   const submit = useSubmit();
   const searching =
     navigation.location &&
-    new URLSearchParams(navigation.location.search).has(
-      "q"
-    );
+    new URLSearchParams(navigation.location.search).has("q");
 
   useEffect(() => {
     const searchField = document.getElementById("q");
@@ -91,11 +84,7 @@ export default function App() {
                 placeholder="Search"
                 type="search"
               />
-              <div
-                id="search-spinner"
-                aria-hidden
-                hidden={!searching}
-              />
+              <div id="search-spinner" aria-hidden hidden={!searching} />
             </Form>
             <Form method="post">
               <button type="submit">New</button>
@@ -108,11 +97,7 @@ export default function App() {
                   <li key={contact.id}>
                     <NavLink
                       className={({ isActive, isPending }) =>
-                        isActive
-                          ? "active"
-                          : isPending
-                          ? "pending"
-                          : ""
+                        isActive ? "active" : isPending ? "pending" : ""
                       }
                       to={`contacts/${contact.id}`}
                     >
@@ -124,9 +109,7 @@ export default function App() {
                         ) : (
                           <i>No Name</i>
                         )}{" "}
-                        {contact.favorite ? (
-                          <span>★</span>
-                        ) : null}
+                        {contact.favorite ? <span>★</span> : null}
                       </Link>
                     </NavLink>
                   </li>
@@ -139,11 +122,9 @@ export default function App() {
             )}
           </nav>
         </div>
-        <div 
+        <div
           className={
-            navigation.state === "loading" && !searching
-              ? "loading"
-              : ""
+            navigation.state === "loading" && !searching ? "loading" : ""
           }
           id="detail"
         >
