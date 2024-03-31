@@ -1,22 +1,12 @@
-import type {
-  ActionFunctionArgs,
-  LoaderFunctionArgs,
- } from "@remix-run/node";
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import {
-  Form, 
-  useFetcher,
-  useLoaderData,
-} from "@remix-run/react";
+import { Form, useFetcher, useLoaderData } from "@remix-run/react";
 import type { FunctionComponent } from "react";
 import invariant from "tiny-invariant";
 import type { ContactRecord } from "../data";
 import { getContact, updateContact } from "../data";
 
-export const action = async ({
-  params,
-  request,
-}: ActionFunctionArgs) => {
+export const action = async ({ params, request }: ActionFunctionArgs) => {
   invariant(params.contactId, "Missing contactId param");
   const formData = await request.formData();
   return updateContact(params.contactId, {
@@ -24,9 +14,7 @@ export const action = async ({
   });
 };
 
-export const loader = async ({
-  params,
-}: LoaderFunctionArgs) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.contactId, "Missing contactId param");
   const contact = await getContact(params.contactId);
   if (!contact) {
@@ -62,9 +50,7 @@ export default function Contact() {
 
         {contact.twitter ? (
           <p>
-            <a
-              href={`https://twitter.com/${contact.twitter}`}
-            >
+            <a href={`https://twitter.com/${contact.twitter}`}>
               {contact.twitter}
             </a>
           </p>
@@ -82,7 +68,7 @@ export default function Contact() {
             method="post"
             onSubmit={(event) => {
               const response = confirm(
-                "Please confirm you want to delete this record."
+                "Please confirm you want to delete this record.",
               );
               if (!response) {
                 event.preventDefault();
@@ -104,15 +90,11 @@ const Favorite: FunctionComponent<{
   const favorite = fetcher.formData
     ? fetcher.formData.get("favorite") === "true"
     : contact.favorite;
-    
+
   return (
     <fetcher.Form method="post">
       <button
-        aria-label={
-          favorite
-            ? "Remove from favorites"
-            : "Add to favorites"
-        }
+        aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
         name="favorite"
         value={favorite ? "false" : "true"}
       >

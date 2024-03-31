@@ -1,27 +1,42 @@
-import GLMap from 'react-map-gl';
-import { DeckGL } from '@deck.gl/react';
-import { LineLayer } from '@deck.gl/layers';
+import GLMap from "react-map-gl";
+import { DeckGL } from "@deck.gl/react";
+import { HexagonLayer } from "@deck.gl/aggregation-layers";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-  longitude: -122.41669,
-  latitude: 37.7853,
-  zoom: 13,
+  longitude: -122.437186,
+  latitude: 37.759101,
+  zoom: 11.5,
   pitch: 0,
-  bearing: 0
+  bearing: 0,
 };
 
-// Data to be used by the LineLayer
-const data = [
-  {sourcePosition: [-122.41669, 37.7853], targetPosition: [-122.41669, 37.781]}
-];
+// Hexagon Layer Data
+const SFMobileFoodPermitDataUrl =
+  "https://data.sfgov.org/resource/rqzj-sfat.json";
 
-export default function Map({mapboxToken}: {mapboxToken: string}) {
+export default function Map({ mapboxToken }: { mapboxToken: string }) {
   const layers = [
-    new LineLayer({id: 'line-layer', data})
+    new HexagonLayer({
+      id: "hexagon-layer",
+      data: SFMobileFoodPermitDataUrl,
+      getPosition: (d: any) => [Number(d.longitude), Number(d.latitude)],
+      pickable: true,
+      extruded: true,
+      radius: 200,
+      elevationScale: 20,
+      colorRange: [
+        [239, 243, 255],
+        [198, 219, 239],
+        [158, 202, 225],
+        [107, 174, 214],
+        [49, 130, 189],
+        [8, 81, 156],
+      ],
+    }),
   ];
   return (
-    <div style={{ position: 'relative', height: '100%' }}>
+    <div style={{ position: "relative", height: "100%" }}>
       <DeckGL
         initialViewState={INITIAL_VIEW_STATE}
         controller={true}
