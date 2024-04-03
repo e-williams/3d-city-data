@@ -1,26 +1,21 @@
 import GLMap from "react-map-gl";
 import { DeckGL } from "@deck.gl/react";
 import { HexagonLayer } from "@deck.gl/aggregation-layers";
+import { DataOptionType } from "~/data";
+import { getPositions } from "~/utils/map.utils";
 
-// Viewport settings
-const INITIAL_VIEW_STATE = {
-  longitude: -122.437186,
-  latitude: 37.759101,
-  zoom: 11.5,
-  pitch: 0,
-  bearing: 0,
-};
-
-// Hexagon Layer Data
-const SFMobileFoodPermitDataUrl =
-  "https://data.sfgov.org/resource/rqzj-sfat.json";
-
-export default function Map({ mapboxToken }: { mapboxToken: string }) {
+export default function Map({
+  mapboxToken,
+  data,
+}: {
+  mapboxToken: string;
+  data: DataOptionType;
+}) {
   const layers = [
     new HexagonLayer({
-      id: "hexagon-layer",
-      data: SFMobileFoodPermitDataUrl,
-      getPosition: (d: any) => [Number(d.longitude), Number(d.latitude)],
+      id: data.id,
+      data: data.dataUrl,
+      getPosition: getPositions(data.id),
       pickable: true,
       extruded: true,
       radius: 200,
@@ -38,7 +33,7 @@ export default function Map({ mapboxToken }: { mapboxToken: string }) {
   return (
     <div style={{ position: "relative", height: "100%" }}>
       <DeckGL
-        initialViewState={INITIAL_VIEW_STATE}
+        initialViewState={data.initialViewState}
         controller={true}
         layers={layers}
       >
