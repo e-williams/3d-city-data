@@ -19,7 +19,7 @@ export default function Map({
       pickable: true,
       extruded: true,
       radius: 200,
-      elevationScale: 20,
+      elevationScale: 15,
       colorRange: [
         [239, 243, 255],
         [198, 219, 239],
