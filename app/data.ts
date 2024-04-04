@@ -20,8 +20,8 @@ const DATASET: DataOptionType[] = [
     initialViewState: {
       longitude: -122.437186,
       latitude: 37.759101,
-      zoom: 11.5,
-      pitch: 0,
+      zoom: 11.3,
+      pitch: 30,
       bearing: 0,
     },
     dataUrl: "https://data.sfgov.org/resource/rqzj-sfat.json",
@@ -31,9 +31,9 @@ const DATASET: DataOptionType[] = [
     label: "LA Traffic Collision Data Since 2010",
     initialViewState: {
       longitude: -118.370933,
-      latitude: 34.020029,
-      zoom: 9.15,
-      pitch: 0,
+      latitude: 33.96,
+      zoom: 9.5,
+      pitch: 50,
       bearing: 0,
     },
     dataUrl: "https://data.lacity.org/resource/d5tf-ez2w.json",
