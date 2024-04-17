@@ -3,6 +3,8 @@ import { matchSorter } from "match-sorter";
 export interface DataOptionType {
   id: string;
   label: string;
+  description: string;
+  referenceUrl: string;
   initialViewState: {
     longitude: number;
     latitude: number;
@@ -17,6 +19,9 @@ const DATASET: DataOptionType[] = [
   {
     id: "sf-mobile-food-permit-data",
     label: "SF Mobile Food Permit Data",
+    description: "Mobile Food Facility Permits in the city of San Francisco.",
+    referenceUrl:
+      "https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/about_data",
     initialViewState: {
       longitude: -122.437186,
       latitude: 37.759101,
@@ -28,7 +33,11 @@ const DATASET: DataOptionType[] = [
   },
   {
     id: "la-traffic-collision-data-2010-present",
-    label: "LA Traffic Collision Data Since 2010",
+    label: "LA Traffic Collision Data",
+    description:
+      "Traffic collision incidents in the City of Los Angeles, dating back to 2010.",
+    referenceUrl:
+      "https://data.lacity.org/Public-Safety/Traffic-Collision-Data-from-2010-to-Present/d5tf-ez2w/about_data",
     initialViewState: {
       longitude: -118.370933,
       latitude: 33.96,
