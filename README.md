@@ -1,38 +1,12 @@
-# Welcome to Remix!
+### ABOUT THE PROJECT:
 
-- [Remix Docs](https://remix.run/docs)
+This project is the result of an internship through Open Avenues Foundation, with the purpose of developing a web application for visualizing large geolocation city datasets. Both SSR and CSR methods are harnessed using Remix, and 3-D visualizations are implemented with WebGL.
 
-## Development
+### TECHNOLOGIES USED:
+Remix, JavaScript, HTML, CSS <br>
+WebGL, deck.gl, Mapbox <br>
+Joy UI <br>
+Node.js, npm, Vite <br>
 
-From your terminal:
-
-```sh
-npm run dev
-```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+### ACKNOWLEDGMENTS:
+Yuya Fujimoto - Global Talent Fellow at OpenAvenues and Lead Software Engineer at Neo.Tax.
