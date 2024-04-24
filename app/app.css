@@ -379,13 +379,14 @@ i {
 #index-page {
   margin: 2rem auto;
   text-align: center;
-  color: #818181;
+  color: #686868;
+  font-size: 1.1rem;
 }
 
-#index-page {
-  margin: 2rem auto;
-  text-align: center;
-  color: #818181;
+#index-page:before {
+  display: block;
+  margin-bottom: 1.6rem;
+  content: url(assets/images/open_avenues_med.png);
 }
 
 #error-page {
