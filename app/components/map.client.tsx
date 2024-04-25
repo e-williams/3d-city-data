@@ -49,7 +49,8 @@ export default function Map({
           data: data.dataUrl,
           getPosition: getPositions(data.id),
           aggregation: "SUM",
-          radiusPixels: 200,
+          radiusPixels: 30,
+          getWeight: () => 1, // fixes bug that causes initialization to fail
           onDataLoad: () => setLoading(false),
         })
       );
