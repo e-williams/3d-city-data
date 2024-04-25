@@ -1,6 +1,6 @@
 import GLMap from "react-map-gl";
 import { DeckGL } from "@deck.gl/react";
-import { HexagonLayer } from "@deck.gl/aggregation-layers";
+import { HexagonLayer, HeatmapLayer } from "@deck.gl/aggregation-layers";
 import { DataOptionType } from "~/data";
 import { getPositions } from "~/utils/map.utils";
 import { Box, CircularProgress } from "@mui/joy";
@@ -13,32 +13,49 @@ export default function Map({
   mapboxToken: string;
   data: DataOptionType;
 }) {
+  const [layer, setLayer] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const layers = [
-    new HexagonLayer({
-      id: data.id,
-      data: data.dataUrl,
-      getPosition: getPositions(data.id),
-      pickable: true,
-      extruded: true,
-      radius: 200,
-      elevationScale: 15,
-      colorRange: [
-        [239, 243, 255],
-        [198, 219, 239],
-        [158, 202, 225],
-        [107, 174, 214],
-        [49, 130, 189],
-        [8, 81, 156],
-      ],
-      onDataLoad: () => setLoading(false),
-      // Callback function of HexagonLayer - passed as a parameter to another
-      // function & executed at some point after outer function is invoked
-      // (placed at the "back").
-      // Will set loading to false after HexagonLayer is invoked.
-    }),
-  ];
+  useEffect(() => {
+    if (data.id === "sf-mobile-food-permit-data") {
+      setLayer(
+        new HexagonLayer({
+          id: data.id,
+          data: data.dataUrl,
+          getPosition: getPositions(data.id),
+          pickable: true,
+          extruded: true,
+          radius: 200,
+          elevationScale: 15,
+          colorRange: [
+            [239, 243, 255],
+            [198, 219, 239],
+            [158, 202, 225],
+            [107, 174, 214],
+            [49, 130, 189],
+            [8, 81, 156],
+          ],
+          onDataLoad: () => setLoading(false),
+          // Callback function of HexagonLayer - passed as parameter to another
+          // function & executed at some point after outer function is invoked
+          // (placed at the "back").
+          // Will set loading to false after HexagonLayer is invoked.
+        })
+      );
+    } else {
+      setLayer(
+        new HeatmapLayer({
+          id: data.id,
+          data: data.dataUrl,
+          getPosition: getPositions(data.id),
+          aggregation: "SUM",
+          radiusPixels: 30,
+          getWeight: () => 1, // fixes bug that causes initialization to fail
+          onDataLoad: () => setLoading(false),
+        })
+      );
+    }
+  }, [data.id]);
 
   useEffect(() => {
     setLoading(true);
@@ -50,7 +67,7 @@ export default function Map({
         <DeckGL
           initialViewState={data.initialViewState}
           controller={true}
-          layers={layers}
+          layers={[layer]}
         >
           <GLMap
             mapboxAccessToken={mapboxToken}
